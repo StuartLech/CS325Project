@@ -1,0 +1,12 @@
+--------------------------------
+| ArticleDownloader            |
+--------------------------------
+| +download_article(url: str): str |
+--------------------------------
+
+--------------------------------
+| FileManager                  |
+--------------------------------
+| +read_urls_from_file(file_path: str): list |
+| +write_content_to_file(content: str, file_path: str): void |
+--------------------------------
