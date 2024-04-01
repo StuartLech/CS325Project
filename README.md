@@ -14,7 +14,7 @@ My News Downloader is an enhanced Python script designed for automated downloadi
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.9
 - Packages: `beautifulsoup4`, `requests`, `google-generativeai` 
 - An API key from OpenAI/Gemini API for accessing summarization features
 
@@ -49,8 +49,8 @@ My News Downloader is an enhanced Python script designed for automated downloadi
 3. Set the API key in your system's environment variables:
 - On Windows, go to Edit Environment Variables -> System Variables, click New, and name it `API_KEY`.
 - On macOS/Linux, add `export API_KEY='your_copied_api_key'` to your `.bashrc`, `.bash_profile`, or `.zshrc` file and reload the terminal session.
-![alt text](image.png)
 4. set the environment variable API_KEY with your actual API key value before running your script. Here's how you can do that on command prompt: `set API_KEY=your_api_key_here`
+![alt text](image.png)
 ## Usage
 
 Ensure the `links.txt` file is in the `Data/raw` directory with URLs listed one per line. Run the script from the project directory:
