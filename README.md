@@ -51,7 +51,8 @@ My News Downloader is an enhanced Python script designed for automated downloadi
 - On macOS/Linux, add `export API_KEY='your_copied_api_key'` to your `.bashrc`, `.bash_profile`, or `.zshrc` file and reload the terminal session.
 4. set the environment variable API_KEY with your actual API key value before running your script. Here's how you can do that on command prompt: `set API_KEY=your_api_key_here`
   
-![alt text](image.png)
+![Screenshot 2024-04-01 172037](https://github.com/StuartLech/Project1-CS325/assets/106490910/e5515980-4a6f-41cd-b99d-7a8a12745335)
+
 
 ## Usage
 
