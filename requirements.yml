@@ -1,4 +1,4 @@
-name: base
+name: stew
 channels:
   - defaults
 dependencies:
