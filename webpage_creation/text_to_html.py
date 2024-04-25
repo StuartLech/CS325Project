@@ -1,47 +1,40 @@
+# text_to_html.py
 from xml.etree import ElementTree as ET
+import os
+from pathlib import Path
 
-def txt_to_html(txt_file, html_file):
-  """
-  Converts a text file with header and paragraph to an HTML file.
-  Make necessary changes for multiple news articles. This script is
-  only for one news article.
+def txt_to_html(summary_dir, html_output_dir):
+    # Ensure the output directory exists
+    html_output_dir.mkdir(parents=True, exist_ok=True)
+    # Define the path for the output HTML file
+    html_file = html_output_dir / "all_news_articles.html"
 
-  Args:
-      txt_file (str): Path to the text file.
-      html_file (str): Path to the output HTML file.
-  """
-  # Read text file content
-  with open(txt_file, 'r') as f:
-    content = f.readlines()
+    # Start building the HTML document
+    root = ET.Element("html")
+    head = ET.SubElement(root, "head")
+    title_element = ET.SubElement(head, "title")
+    title_element.text = "News Aggregation"
+    body = ET.SubElement(root, "body")
 
-  # Extract header and paragraph, since you will be having multiple articles the logic will
-  # change for the code given below. 
-  header = content[0].strip()
-  paragraph = "".join(content[1:]).strip()
+    # Process each text file in the summary directory
+    for filename in sorted(os.listdir(summary_dir)):
+        if filename.startswith("article_#") and filename.endswith(".txt"):
+            file_path = os.path.join(summary_dir, filename)
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.readlines()
 
-  # Create root element for HTML, try to remember the structure of a HTML file
-  root = ET.Element("html")
+            # Extract the title and paragraph from the file
+            header = content[0].strip()
+            paragraph = "".join(content[1:]).strip()
 
-  # Create head and body elements, try to understand how subElements works
-  head = ET.SubElement(root, "head")
-  title = ET.SubElement(head, "title")
-  title.text = "My News Aggregation Site"
-  body = ET.SubElement(root, "body")
+            # Add the title and paragraph to the HTML body
+            h1 = ET.SubElement(body, "h1")
+            h1.text = header
+            p = ET.SubElement(body, "p")
+            p.text = paragraph
 
-  # Create header and paragraph elements in body
-  h1 = ET.SubElement(body, "h1")
-  h1.text = header
-  p = ET.SubElement(body, "p")
-  p.text = paragraph
-
-  # Write HTML tree to file
-  with open(html_file, 'wb') as f:
+    # Write the constructed HTML to the specified file
     tree = ET.ElementTree(root)
-    tree.write(f, encoding='utf-8')
+    tree.write(html_file, encoding='utf-8', xml_declaration=True)
 
-
-txt_file = "my_text.txt"
-html_file = "all_news_articles.html"
-txt_to_html(txt_file, html_file)
-
-print(f"Converted text file '{txt_file}' to HTML file '{html_file}'.")
+    # Return the path to the generated HTML file
