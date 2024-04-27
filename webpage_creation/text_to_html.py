@@ -37,4 +37,5 @@ def txt_to_html(summary_dir, html_output_dir):
     tree = ET.ElementTree(root)
     tree.write(html_file, encoding='utf-8', xml_declaration=True)
 
-    # Return the path to the generated HTML file
+    return html_file
+
